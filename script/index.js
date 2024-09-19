@@ -1,6 +1,11 @@
 function handleKeyboard(event){
     const playerPressed = event.key;
 
+    //stop the game if player press escape
+    if(playerPressed==='Escape'){
+        gameOver();
+    }
+
     const currentAlphabetElement = document.getElementById('current-alphabet');
     const currentElement = currentAlphabetElement.innerText;
     const expectedElement = currentElement.toLowerCase();
@@ -64,4 +69,11 @@ function play(){
 function gameOver(){
     hideElementByID('play');
     showElementByID('final-score');
+    
+    const lastScore =getTextElementValueById('current-score');
+    setTextElementValueById('last-score',lastScore);
+
+    const currentAlphabet = getElementTextById('current-alphabet');
+    removeBackgroundColor(currentAlphabet);
+
 }
